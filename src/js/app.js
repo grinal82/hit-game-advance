@@ -29,7 +29,7 @@ export class Game {
   startGame() {
     setInterval(() => {
       this.goblin.appear();
-      this.incrementLostCount();
+      // this.incrementLostCount();
     }, 1000);
   }
 
@@ -48,6 +48,8 @@ export class Game {
 
   endGame() {
     alert("Игра завершена!");
+    this.deadCount = 0;
+    this.lostCount = 0;
   }
 }
 
