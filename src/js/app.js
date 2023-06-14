@@ -55,7 +55,7 @@ export class Game {
   incrementLostCount() {
     this.lostCount++;
     this.lostScore.textContent = this.lostCount;
-    if (this.lostCount > 5) {
+    if (this.lostCount > 4) {
       this.endGame();
     }
   }
@@ -86,7 +86,7 @@ export class Goblin {
 
     this.timerId = setTimeout(() => {
       this.hide();
-    }, 1000);
+    }, 2000);
   }
 
   hide() {
