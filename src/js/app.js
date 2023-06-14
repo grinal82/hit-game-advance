@@ -5,6 +5,7 @@ export class Game {
     this.lostCount = 0;
     this.deadScore = document.getElementById("dead");
     this.lostScore = document.getElementById("lost");
+    this.intervalId = null;
   }
 
   init() {
@@ -22,15 +23,28 @@ export class Game {
         } else {
           this.incrementLostCount();
         }
+        this.startGame();
       });
     });
   }
 
   startGame() {
-    setInterval(() => {
+    this.clearInterval();
+    this.intervalId = setInterval(() => {
       this.goblin.appear();
-      // this.incrementLostCount();
-    }, 1000);
+      setTimeout(() => {
+        if (this.goblin.isActive()) {
+          this.incrementLostCount();
+          this.goblin.hide();
+          this.startGame();
+        }
+      }, 2000);
+    }, 2000);
+  }
+
+  clearInterval() {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
   }
 
   incrementScore() {
@@ -50,6 +64,7 @@ export class Game {
     alert("Игра завершена!");
     this.deadCount = 0;
     this.lostCount = 0;
+    this.clearInterval();
   }
 }
 
@@ -80,6 +95,10 @@ export class Goblin {
       this.activeHole = null;
       clearTimeout(this.timerId);
     }
+  }
+
+  isActive() {
+    return this.activeHole !== null;
   }
 }
 
