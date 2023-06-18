@@ -32,14 +32,7 @@ export class Game {
     this.clearInterval();
     this.intervalId = setInterval(() => {
       this.goblin.appear();
-      setTimeout(() => {
-        if (this.goblin.isActive()) {
-          this.incrementLostCount();
-          this.goblin.hide();
-          this.startGame();
-        }
-      }, 1000);
-    }, 1000);
+    }, 2000);
   }
 
   clearInterval() {
@@ -85,6 +78,7 @@ export class Goblin {
     this.activeHole.classList.add("hole_active");
 
     this.timerId = setTimeout(() => {
+      game.incrementLostCount();
       this.hide();
     }, 2000);
   }
