@@ -38,8 +38,8 @@ export class Game {
           this.goblin.hide();
           this.startGame();
         }
-      }, 2000);
-    }, 2000);
+      }, 1000);
+    }, 1000);
   }
 
   clearInterval() {
